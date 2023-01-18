@@ -1,33 +1,7 @@
 import styled from "styled-components";
-import theme from "../../pages/Theme";
-
-const ContentArea = styled.div`
-  display: flex column;
-  gap: 10px;
-  // background-color: ${(p) => p.theme.color.secondary};
-
-  padding: 10px;
-`;
-
-const ContentRow = styled.div`
-  display: flex;
-  column-gap: 10px;
-  margin-bottom: 10px;
-`;
-
-const Content = styled.div`
-  background-color: ${(p) => p.theme.color.secondary};
-  color: ${(p) => p.theme.color.primary};
-
-  border-radius: 5px;
-  width: 100%;
-  height: 100px;
-
-  // margin: 10px;
-`;
 
 const Container = styled.div`
-  display: flex;
+  width: 100%;
 `;
 
 const Row = styled.div`
@@ -37,35 +11,70 @@ const Row = styled.div`
 `;
 
 type TypeCol = {
-  media?: string;
-  rate?: number;
+  // media?: string;
+  xs?: number;
+  sm?: number;
+  md?: number;
+  lg?: number;
+};
+
+const getWidthString = (rate: number) => {
+  if (!rate) return;
+  return `width: ${(rate || 1) * 100}%`;
 };
 
 const Col = styled.div<TypeCol>`
-  flex: 0 0 auto;
-  width: ${(p) => p.rate || 100}%;
-  background: #333;
+  width: ${(p) => (p.xs || 1) * 100}%;
+  @media only screen and (min-width: 768px) {
+    ${(p) => p.sm && getWidthString(p.sm)};
+  }
+  @media only screen and (min-width: 992px) {
+    ${(p) => p.md && getWidthString(p.md)};
+  }
+  @media only screen and (min-width: 1200px) {
+    ${(p) => p.lg && getWidthString(p.lg)};
+  }
+`;
+
+type TypeColorBox = {
+  m?: string;
+  p?: string;
+};
+
+const ColorBox = styled.div<TypeColorBox>`
+  background: #afa;
+  margin: ${(p) => p.m || "0px"};
+  padding: ${(p) => p.p || "0px"};
+  border-radius: 5px;
 `;
 
 const PhotoContent = () => {
   return (
-    // <ContentArea>
-    //   <ContentRow>
-    //     <Content></Content>
-    //   </ContentRow>
-    //   <ContentRow>
-    //     <Content></Content>
-    //   </ContentRow>
-    //   <ContentRow>
-    //     <Content></Content>
-    //   </ContentRow>
-    // </ContentArea>
     <Container>
       <Row>
-        <Col>sample</Col>
-        <Col>sample</Col>
-        <Col>sample</Col>
-        <Col>sample</Col>
+        <Col sm={1 / 2}>
+          <ColorBox>This is ColorBox</ColorBox>
+        </Col>
+        <Col sm={1 / 2}>
+          <ColorBox p="50px">
+            This is ColorBox with padding: 50px
+          </ColorBox>
+        </Col>
+        <Col sm={1 / 3}>
+          <ColorBox p="50px">
+            This is ColorBox with padding: 50px
+          </ColorBox>
+        </Col>
+        <Col xs={1 / 3}>
+          <ColorBox p="50px">
+            This is ColorBox with padding: 50px
+          </ColorBox>
+        </Col>
+        <Col xs={1 / 3}>
+          <ColorBox p="50px">
+            This is ColorBox with padding: 50px
+          </ColorBox>
+        </Col>
       </Row>
     </Container>
   );
