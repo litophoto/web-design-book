@@ -11,28 +11,29 @@ const Row = styled.div`
 `;
 
 type TypeCol = {
-  // media?: string;
   xs?: number;
   sm?: number;
   md?: number;
   lg?: number;
+  gap?: string;
 };
 
-const getWidthString = (rate: number) => {
+const getWidthString = (rate: number, gap?: string) => {
   if (!rate) return;
-  return `width: ${(rate || 1) * 100}%`;
+  return `width: calc(${(rate || 1) * 100}% - ${gap || 0})`;
 };
 
 const Col = styled.div<TypeCol>`
-  width: ${(p) => (p.xs || 1) * 100}%;
+  flex: 0 0 auto;
+  width: calc(${(p) => (p.xs || 1) * 100}% - ${p => p.gap || 0});
   @media only screen and (min-width: 768px) {
-    ${(p) => p.sm && getWidthString(p.sm)};
+    ${(p) => p.sm && getWidthString(p.sm, p.gap)};
   }
   @media only screen and (min-width: 992px) {
-    ${(p) => p.md && getWidthString(p.md)};
+    ${(p) => p.md && getWidthString(p.md, p.gap)};
   }
   @media only screen and (min-width: 1200px) {
-    ${(p) => p.lg && getWidthString(p.lg)};
+    ${(p) => p.lg && getWidthString(p.lg, p.gap)};
   }
 `;
 
@@ -52,28 +53,23 @@ const PhotoContent = () => {
   return (
     <Container>
       <Row>
-        <Col sm={1 / 2}>
-          <ColorBox>This is ColorBox</ColorBox>
+        <Col gap="10px">
+          <ColorBox p="50px">This is ColorBox with padding: 50px</ColorBox>
         </Col>
-        <Col sm={1 / 2}>
-          <ColorBox p="50px">
-            This is ColorBox with padding: 50px
-          </ColorBox>
+        <Col xs={1 / 2} gap="10px">
+          <ColorBox p="50px">allways harf ColorBox</ColorBox>
         </Col>
-        <Col sm={1 / 3}>
-          <ColorBox p="50px">
-            This is ColorBox with padding: 50px
-          </ColorBox>
+        <Col sm={1 / 3} gap="10px">
+          <ColorBox p="50px">This is ColorBox with padding: 50px</ColorBox>
         </Col>
-        <Col xs={1 / 3}>
-          <ColorBox p="50px">
-            This is ColorBox with padding: 50px
-          </ColorBox>
+        <Col xs={1 / 3} gap="10px">
+          <ColorBox p="50px">This is ColorBox with padding: 50px</ColorBox>
         </Col>
-        <Col xs={1 / 3}>
-          <ColorBox p="50px">
-            This is ColorBox with padding: 50px
-          </ColorBox>
+        <Col xs={1 / 3} gap="10px">
+          <ColorBox p="50px">This is ColorBox with padding: 50px</ColorBox>
+        </Col>
+        <Col xs={1 / 3} gap="10px">
+          <ColorBox p="50px">This is ColorBox with padding: 50px</ColorBox>
         </Col>
       </Row>
     </Container>
