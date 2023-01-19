@@ -1,8 +1,9 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import theme from "./Theme";
+import theme from "./theme";
 
-import PhotoContent from "../components/YankeeHedgehog/PhotoContent";
+import FlexContent from "../components/YankeeHedgehog/FlexContent";
+import GridContent from "../components/YankeeHedgehog/GridContent";
 
 const StyledBasic = styled.div`
   background-color: ${(props) => props.theme.color.primary};
@@ -196,7 +197,8 @@ const Top = () => {
               <Content></Content>
             </ContentRow>
           </ContentArea> */}
-          <PhotoContent />
+          {/* <FlexContent /> */}
+          <GridContent />
         </Main>
 
         <Footer>

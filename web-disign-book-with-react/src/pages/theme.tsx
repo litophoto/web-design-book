@@ -6,6 +6,12 @@ const theme = {
     background: "#EEECE1",
     text: "#afa",
     dark: "#4A452A",
+  },
+  breakpoint: {
+    xs: '0px',
+    sm: '768px',
+    md: '992px',
+    xl: '1200px',
   }
 }
 
