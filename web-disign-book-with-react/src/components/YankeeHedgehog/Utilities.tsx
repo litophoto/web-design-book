@@ -16,6 +16,16 @@ const SquareBox = styled.div`
   background: #bb9a;
   aspect-ratio: 1 / 1;
   border-radius: 5px;
-`
+`;
 
-export {ColorBox, SquareBox}
+type TypeRectangleBox = {
+  ratio?: 1 | number;
+};
+
+const RectangleBox = styled.div<TypeRectangleBox>`
+  background: #bb9a;
+  aspect-ratio: ${(p) => p.ratio};
+  border-radius: 5px;
+`;
+
+export { ColorBox, SquareBox, RectangleBox };
