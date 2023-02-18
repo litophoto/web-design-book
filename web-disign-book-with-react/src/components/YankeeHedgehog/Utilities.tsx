@@ -28,4 +28,21 @@ const RectangleBox = styled.div<TypeRectangleBox>`
   border-radius: 5px;
 `;
 
-export { ColorBox, SquareBox, RectangleBox };
+const Img = styled.img`
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 3/2;
+`;
+
+const H1Title = styled.h1`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+`;
+
+const PText = styled.p`
+  margin: 0 0 10px 0;
+`;
+
+export { ColorBox, SquareBox, RectangleBox, Img, H1Title, PText };

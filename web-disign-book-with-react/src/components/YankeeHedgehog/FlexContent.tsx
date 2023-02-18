@@ -26,7 +26,7 @@ const getWidthString = (rate: number, gap?: string) => {
 
 const Col = styled.div<TypeCol>`
   flex: 0 0 auto;
-  width: calc(${(p) => (p.xs || 1) * 100}% - ${p => p.gap || 0});
+  width: calc(${(p) => (p.xs || 1) * 100}% - ${(p) => p.gap || 0});
   @media only screen and (min-width: 768px) {
     ${(p) => p.sm && getWidthString(p.sm, p.gap)};
   }
@@ -69,3 +69,4 @@ const PhotoContent = () => {
 };
 
 export default PhotoContent;
+export { Col, Row };

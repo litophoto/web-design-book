@@ -1,9 +1,9 @@
-import FlownButton from "../components/FlownButton";
-import FlownSimpleButton from "../components/FlownSimpleButton";
-import LineButton from "../components/LineButton";
-import DoubleLineButton from "../components/DoubleLineButton";
-import OutBorderButton from "../components/OutBorderButton";
-import ExpandSearchBox from "../components/ExpandSearchBox";
+import FlownButton from "../components/Utilities/FlownButton";
+import FlownSimpleButton from "../components/Utilities/FlownSimpleButton";
+import LineButton from "../components/Utilities/LineButton";
+import DoubleLineButton from "../components/Utilities/DoubleLineButton";
+import OutBorderButton from "../components/Utilities/OutBorderButton";
+import ExpandSearchBox from "../components/Utilities/ExpandSearchBox";
 
 const ComponentsCollector = () => {
   return (

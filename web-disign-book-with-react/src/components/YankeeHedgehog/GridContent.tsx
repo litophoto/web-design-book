@@ -40,3 +40,4 @@ const GridContent = () => {
 };
 
 export default GridContent;
+export { StyledGrid };
