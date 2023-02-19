@@ -1,12 +1,13 @@
-import { useState } from "react";
+import React, { forwardRef, useState } from "react";
 import styled from "styled-components";
 
 type TextboxType = {
   value?: string;
   onKeyEnter: (text: string) => void;
+  onBlur: () => void;
 };
 
-const Textbox = ({ value = "", onKeyEnter }: TextboxType) => {
+const Textbox = ({ value = "", onKeyEnter, onBlur }: TextboxType) => {
   const [input, setInput] = useState(value);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value);
@@ -22,11 +23,36 @@ const Textbox = ({ value = "", onKeyEnter }: TextboxType) => {
       value={input}
       onChange={handleChange}
       onKeyDown={handleKeyEnter}
+      onBlur={onBlur}
     />
   );
 };
+const WrapperTextbox = forwardRef<
+  React.RefObject<HTMLInputElement> | null | undefined,
+  TextboxType
+>(({ value = "", onKeyEnter }, ref) => {
+  const [input, setInput] = useState(value);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(event.target.value);
+  };
+  const handleKeyEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.nativeEvent.isComposing || event.key !== "Enter") return;
+    onKeyEnter(input);
+    setInput("");
+  };
+  return (
+    <TextboxStyle
+      type="text"
+      value={input}
+      onChange={handleChange}
+      onKeyDown={handleKeyEnter}
+      ref={ref}
+    />
+  );
+});
 
 export default Textbox;
+export { WrapperTextbox };
 
 const TextboxStyle = styled.input`
   width: 75%;
